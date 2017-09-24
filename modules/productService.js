@@ -5,7 +5,7 @@ const rp = require('request-promise');
 class ProductService {
 
     constructor() {
-        this.url = 'http://redsky.target.com/v2/pdp/tcin/13860428?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics';
+        this.url = 'http://redsky.target.com/v2/pdp/tcin/PRODUCTID?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics';
         this.options = {
             headers: {
                 'User-Agent': 'request',
@@ -14,10 +14,10 @@ class ProductService {
     }
 
     getProductNameById(prodId) {
-        return rp(this.url, this.options).then((resp) => {
-             return JSON.parse(resp).product.item.product_description.title;
-         });
-         
+        let newURL = this.url.replace(/PRODUCTID/g, prodId);
+        return rp(newURL, this.options).then((resp) => {
+            return JSON.parse(resp).product.item.product_description.title;
+        });
     }
 }
 

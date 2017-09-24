@@ -3,7 +3,18 @@ const app = express();
 
 const productService = require('./modules/productService');
 
-productService.getProductNameById(123).then((name)=>{
+// 13860428 the big Lebowski
+productService.getProductNameById(13860428).then((name)=>{
+    console.log('in app.js name', name);
+});
+
+// 13860429 - sponge bob
+productService.getProductNameById(13860429).then((name)=>{
+    console.log('in app.js name', name);
+});
+
+// 13860432 - donna reed show
+productService.getProductNameById(13860432).then((name)=>{
     console.log('in app.js name', name);
 });
 
