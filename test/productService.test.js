@@ -6,8 +6,6 @@ describe('ProductService', () => {
         it('should return product name if called with a valid id', (done) => {
             // valid id for The Big Lebowski
             productService.getProductNameById(13860428).then((name) => {
-                console.log(name);
-
                 expect(name).to.contain('The Big Lebowski');
                 done();
             });
@@ -16,8 +14,6 @@ describe('ProductService', () => {
         it('should return product name when called with a valid id of the wrong type', (done) => {
             // valid id for The Big Lebowski
             productService.getProductNameById('13860428').then((name) => {
-                console.log(name);
-
                 expect(name).to.contain('The Big Lebowski');
                 done();
             });
