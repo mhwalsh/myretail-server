@@ -36,7 +36,7 @@ router.get('/:id', (req, res) => {
                 currency_code: localProd.currency_code
             }
             localProd.name = externalProd;
-            res.send(productComposite);
+            res.status(200).send(productComposite);
         });
     });
 });
