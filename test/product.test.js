@@ -1,13 +1,11 @@
 const expect = require('chai').expect;
 const request = require('request');
 
-const url = 'http://localhost:3003/product/13860428';
-
 describe('ProductRouter', () => {
     describe('get product by id route', () => {
 
         it('should return an object with the expected properties when passed a valid id', (done) => {
-            request(url, (error, response, body) => {
+            request(buildUrl(13860428), (error, response, body) => {
                 expect(error).to.be.null;
 
                 // parse body to js object
@@ -22,13 +20,27 @@ describe('ProductRouter', () => {
         });
 
         it('should return a status code of 200 when passed a valid id', (done) => {
-            request(url, (error, response, body) => {
+            request(buildUrl(13860428), (error, response, body) => {
                 expect(error).to.be.null;
 
                 expect(response.statusCode).to.equal(200);
-                
+
+                done();
+            });
+        });
+
+        it('should send 404 if non numeric value given', (done) => {
+            request(buildUrl('e353se3'), (error, response, body) => {
+                expect(error).to.be.null;
+                expect(JSON.parse(body).message).to.contain('invalid product id type or format');
+                expect(response.statusCode).to.equal(404);
+
                 done();
             });
         });
     });
 });
+
+function buildUrl(prodId) {
+    return 'http://localhost:3003/product/PRODUCTID'.replace(/PRODUCTID/g, prodId);
+}

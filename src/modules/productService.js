@@ -21,7 +21,7 @@ class ProductService {
         }).catch((err) => {
             // if 404, send specific error message
             if (err.statusCode === 404) {
-                throw new Error(err, 'invalid product id');
+                throw new Error('invalid product id');
             
             } else { // otherwise bubble up
                 throw (err);
