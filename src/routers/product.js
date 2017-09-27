@@ -3,7 +3,7 @@ const Product = require('../modules/productSchema');
 const productService = require('../modules/productService');
 const isValidId = require('../modules/idValidator');
 
-router.get('quickCreate/:id/:value/:currency_code', (req, res) => {
+router.get('/quickCreate/:id/:value/:currency_code', (req, res) => {
     console.log(req.params);
     let product = new Product({
         product_id: req.params.id,
