@@ -1,7 +1,31 @@
 const expect = require('chai').expect;
+const nock = require('nock');
 const productService = require('../src/modules/productService');
 
 describe('ProductService', () => {
+
+    beforeEach(function () {
+        nock('http://redsky.target.com')
+            .get('/v2/pdp/tcin/13860428')
+            .reply(200, {
+                product: {
+                    item: {
+                        product_description: {
+                            title: 'The Big Lebowski'
+                        }
+                    }
+                }
+            });
+
+
+        nock('http://redsky.target.com')
+            .get('/v2/pdp/tcin/123')
+            .replyWithError('invalid product id');
+
+        nock.disableNetConnect();
+
+    });
+
     describe('#getProductNameById()', () => {
         it('should return product name if called with a valid id', (done) => {
             // valid id for The Big Lebowski
