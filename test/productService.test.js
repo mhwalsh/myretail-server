@@ -42,18 +42,27 @@ describe('ProductService', () => {
             });
         });
     });
-    
+
     describe('#getProductNameById() bad id error validation', () => {
         beforeEach(() => {
             nock('http://redsky.target.com')
                 .get('/v2/pdp/tcin/123')
                 .replyWithError('invalid product id');
         });
-        it('should error nicely when called with invalid id', (done) => {
+
+        it('should error nicely when called with non existent id', (done) => {
             productService.getProductNameById(123).catch((err) => {
                 expect(err.message).to.contain('invalid product id');
                 done();
             });
+        });
+
+        it('should error nicely when called with improperly formatted id', () => {
+            try {
+                productService.getProductNameById('3860%e428');
+            } catch (err) {
+                expect(err.message).to.contain('invalid product id');
+            }
         });
     });
 });

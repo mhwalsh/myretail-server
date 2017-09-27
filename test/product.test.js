@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const request = require('request');
-const buildUrl = require('../src/modules/urlFormater');
+const buildUrl = require('../src/modules/urlFormatter');
 
 const url = 'http://localhost:3003/product/PRODUCTID';
 

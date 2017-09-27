@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const Product = require('../modules/productSchema');
 const productService = require('../modules/productService');
+const isValidId = require('../modules/idValidator');
 
 router.get('quickCreate/:id/:value/:currency_code', (req, res) => {
     console.log(req.params);
@@ -58,14 +59,5 @@ router.get('/:id', (req, res) => {
         });
     }
 });
-
-
-/**
- * 
- * @param id 
- */
-function isValidId(id) {
-    return /^[0-9]+$/.test(id);
-}
 
 module.exports = router;
