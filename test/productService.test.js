@@ -42,6 +42,7 @@ describe('ProductService', () => {
             });
         });
     });
+    
     describe('#getProductNameById() bad id error validation', () => {
         beforeEach(() => {
             nock('http://redsky.target.com')

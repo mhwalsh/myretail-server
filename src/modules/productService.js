@@ -9,7 +9,7 @@ class ProductService {
         this.url = 'http://redsky.target.com/v2/pdp/tcin/PRODUCTID';
         this.options = {
             headers: {
-                'User-Agent': 'request',
+                'User-Agent': 'request'
             }
         }
     }
@@ -25,7 +25,7 @@ class ProductService {
                 throw new Error('invalid product id');
             
             } else { // otherwise bubble up
-                throw (err);
+                throw err;
             }
         });
     }
