@@ -1,6 +1,7 @@
 const rp = require('request-promise');
 const buildUrl = require('./urlFormatter');
 const isValidId = require('../modules/idValidator');
+require('dotenv').config();
 
 /**
  * ProductService
@@ -8,7 +9,7 @@ const isValidId = require('../modules/idValidator');
 class ProductService {
 
     constructor() {
-        this.url = 'http://redsky.target.com/v2/pdp/tcin/PRODUCTID';
+        this.url = process.env.EXTERNAL_URL;
         this.options = {
             headers: {
                 'User-Agent': 'request'

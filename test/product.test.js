@@ -1,8 +1,9 @@
 const expect = require('chai').expect;
 const request = require('request');
 const buildUrl = require('../src/modules/urlFormatter');
+require('dotenv').config();
 
-const url = 'http://localhost:3003/product/PRODUCTID';
+const url = process.env.LOCAL_URL;
 
 describe('ProductRouter', () => {
     describe('get product by id route', () => {
