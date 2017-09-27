@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Product = require('../modules/productSchema');
+const Product = require('../models/productSchema');
 const productService = require('../modules/productService');
 const isValidId = require('../modules/idValidator');
 
