@@ -1,11 +1,25 @@
 const expect = require('chai').expect;
 const request = require('request');
 const buildUrl = require('../src/modules/urlFormatter');
+const testUtils = require('./testUtils');
+
 require('dotenv').config();
 
 const url = process.env.LOCAL_URL;
 
 describe('ProductRouter', () => {
+    before(() => {
+        testUtils.dropData().then(() => {
+            testUtils.createBigLebowski();
+        });
+    });
+
+    after(() => {
+        testUtils.dropData().then(() => {
+            testUtils.closeConnection();
+        });
+    });
+
     describe('get product by id route', () => {
 
         it('should return an object with the expected properties when passed a valid id', (done) => {

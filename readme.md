@@ -29,7 +29,7 @@ $ npm start
 Add some initial test data to the database by running the following command:
 
 ```
-$ node test/db.setup.js 
+$ node db.setup.js 
 ```
 The server does not need to be up to execute this script. If database doesn't exist it will be created. If database does exist and contains data, the data will be dropped and regenerated.
 

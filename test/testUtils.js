@@ -4,9 +4,7 @@ const mongoose = require('mongoose');
 class TestUtils {
 
     dropData() {
-        Product.remove({}, () => {
-            closeConnection();
-        });
+        return Product.remove({});
     }
 
     createBigLebowski() {
