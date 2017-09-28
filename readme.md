@@ -1,91 +1,110 @@
-# Project Title
+# myRetail RESTful service
 
-One Paragraph of project description goes here
+myRetail is a RESTful service that makes product data available to web and mobile clients.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To run this project git clone the repository to your local machine.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
+Other then the project specific dependencies, this project depends on a [mongoDB](https://www.mongodb.com/). You will to install this database on your local machine and start it. This [guide](https://github.com/mhwalsh/lecture-guides/blob/master/mongo-install.md) walks through the mongoDB install with `brew` and `brew services`. Brew and brew services are not required to install it and get it running, but it makes things very easy to manage. If you don't have brew and word like to use it, find out more [here](https://brew.sh/).
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Run the following command inside the project directory:
 
 ```
-Give the example
+$ npm install
 ```
 
-And repeat
+This will install all project dependencies into a `node_modules` folder.
+
+To start the server run:
 
 ```
-until finished
+$ npm start
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+Add some initial test data to the database by running the following command:
+
+```
+```
+
+Test the services is working locally by navigating to this this url in your prefered browser [http://localhost:3003/product/ID](http://localhost:3003/product/ID)
+
+## Project stucture
+
+```
+.
+├── package-lock.json
+├── package.json
+├── readme.md
+├── src  --------------------> // source code
+│   ├── app.js
+│   ├── models  ------------>  // database models
+│   │   └── productSchema.js
+│   ├── modules  ----------->  // other js modules
+│   │   ├── idValidator.js
+│   │   ├── productService.js
+│   │   └── urlFormatter.js
+│   └── routers  ----------->  // http request routing module
+│       └── product.js
+└── test  ------------------>  // test code
+    ├── idValidator.test.js
+    ├── product.test.js
+    ├── productService.test.js
+    └── urlFormatter.test.js
+```
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+To run the automated tests for this service locally, run the server using the following command in the terminal:
 
+```
+$npm start
+```
+In another tab in the terminal, run the following:
+
+```
+$ npm test
+```
 ### Break down into end to end tests
 
-Explain what these tests test and why
+There are tests for each module. The main services that are being tested are the  `src/modules/productService.js` and the `src/routers/product.js`. The `productService` is a module that connects the an external resource for specific product data. The `product` router handlings http connection to myRetail and delegates requsets to the `productService`. 
 
-```
-Give an example
-```
+The tests live in a `test` directory inside the root of the project. See the project structure above. Test files have a `.test.js` suffix naming convension.
+
 
 ### And coding style tests
 
-Explain what these tests test and why
+The tests are built with mocha and chai. Each testing file tests one module and `describe` statements are used to separate related tests into groups. `before` and `beforeEach` statements are used inside relevant describes to set up the tests. `it` statements describe the test cases.
 
 ```
-Give an example
+describe('ProductService', () => {
+
+    before(() => {
+        nock.disableNetConnect();
+    });
+
+    describe('#getProductNameById() happy path', () => {
+    	it('should return product name if called with a valid id', (done) => {
 ```
+
+Test for the module that hit the external service, use [nock](https://github.com/node-nock/nock) to intersept requests and send expected responses.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This app is deployed on heroku and mLabs. To contribute and depoly add and commit changes. Push changes to heroku master.
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [Expressjs](https://expressjs.com/) - Web framework for Node.js
+* [MongoDB](https://www.mongodb.com/) - NoSQL db
+* [Mongoose](http://mongoosejs.com/index.html) - Object modeling for Node.js and MongoDB
+* All other dependency can be found in the `package.json` file in the root of the project.
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
-
-// 13860428 the big Lebowski
-// 13860429 - sponge bob
-// 13860432 - donna reed show
+* **Millicent Walsh** - [mhwalsh](https://github.com/mhwalsh)
