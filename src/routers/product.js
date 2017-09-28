@@ -3,15 +3,20 @@ const Product = require('../models/productSchema');
 const productService = require('../modules/productService');
 const isValidId = require('../modules/idValidator');
 
-router.get('/quickCreate/:id/:value/:currency_code', (req, res) => {
-    console.log(req.params);
-    let product = new Product({
-        product_id: req.params.id,
-        value: req.params.value,
-        currency_code: req.params.currency_code
+/**
+ * POST route to create new products internal to this tool.
+ * Not production ready, used by tests and during init developer setup
+ */
+router.post('/', (req, res) => {
+    var product = req.body;
+
+    let newProd = new Product({
+        product_id: product.id,
+        value: product.value,
+        currency_code: product.currency_code
     });
 
-    product.save((err) => {
+    newProd.save((err) => {
         if (err) {
             console.log(err);
             res.sendStatus(500);

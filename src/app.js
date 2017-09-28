@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
+const bodyParser = require('body-parser');
 
 // require routers
 const productRouter = require('./routers/product');
 
 app.set('port', 3003);
+
+app.use(bodyParser.json());
 
 app.use('/product', productRouter);
 
