@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 // require routers
 const productRouter = require('./routers/product');
 
-app.set('port', 3003);
+app.set('port',  process.env.PORT || 3003);
 
 app.use(bodyParser.json());
 
