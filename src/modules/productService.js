@@ -12,7 +12,8 @@ class ProductService {
         this.url = process.env.EXTERNAL_URL;
         this.options = {
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Content-Type': 'application/json'
             }
         }
     }
