@@ -5,7 +5,6 @@ mongoose.Promise = require('bluebird');
 if(process.env.MONGODB_URI !== undefined) {
     console.log('env connection string');
     connectionString = process.env.MONGODB_URI;
-    pg.defaults.ssl = true;
 } else {
     connectionString = 'mongodb://localhost:27017/productDb';
 }
