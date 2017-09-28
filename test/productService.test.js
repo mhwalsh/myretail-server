@@ -14,7 +14,7 @@ describe('ProductService', () => {
     describe('#getProductNameById() happy path', () => {
         beforeEach(() => {
             nock('http://redsky.target.com')
-                .get('/v2/pdp/tcin/13860428')
+                .get('/v2/pdp/tcin/13860428?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics')
                 .reply(200, {
                     product: {
                         item: {
@@ -46,7 +46,7 @@ describe('ProductService', () => {
     describe('#getProductNameById() bad id error validation', () => {
         beforeEach(() => {
             nock('http://redsky.target.com')
-                .get('/v2/pdp/tcin/123')
+                .get('/v2/pdp/tcin/123?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics')
                 .replyWithError('invalid product id');
         });
 

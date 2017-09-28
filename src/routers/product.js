@@ -20,13 +20,12 @@ router.get('/:id', (req, res) => {
                     res.status(404).send({ message: 'Error querying local database' });
                 }
 
-                let productComposite = {
+                res.status(200).send({
                     id: productId,
                     name: externalProd,
                     value: localProd.value,
                     currency_code: localProd.currency_code
-                }
-                res.status(200).send(productComposite);
+                });
             });
         }).catch((err) => {
 
