@@ -29,9 +29,12 @@ $ npm start
 Add some initial test data to the database by running the following command:
 
 ```
+$ node test/db.setup.js 
 ```
+The server does not need to be up to execute this script. If database doesn't exist it will be created. If database does exist and contains data, the data will be dropped and regenerated.
 
-Test the services is working locally by navigating to this this url in your prefered browser [http://localhost:3003/product/ID](http://localhost:3003/product/ID)
+### Check Step
+Test the services is working locally by navigating to this this url in your prefered browser [http://localhost:3003/product/13860428](http://localhost:3003/product/13860428)
 
 ## Project stucture
 
