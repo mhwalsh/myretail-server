@@ -19,16 +19,16 @@ router.get('/:id', (req, res) => {
             Product.findOne({ product_id: productId }, (err, localProd) => {
 
                 // product id exists in external service, but failed to query local db
-                if (err) {
+                if (err || !localProd) {
                     res.status(404).send({ message: 'Error querying local database' });
+                } else {
+                    res.status(200).send({
+                        id: productId,
+                        name: externalProd,
+                        value: localProd.value,
+                        currency_code: localProd.currency_code
+                    });
                 }
-
-                res.status(200).send({
-                    id: productId,
-                    name: externalProd,
-                    value: localProd.value,
-                    currency_code: localProd.currency_code
-                });
             });
         }).catch((err) => {
 

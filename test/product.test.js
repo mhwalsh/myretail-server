@@ -11,19 +11,18 @@ require('dotenv').config();
 const url = process.env.LOCAL_URL;
 
 describe('ProductRouter', () => {
-    before(() => {
-        testUtils.dropData().then(() => {
-            testUtils.createBigLebowski();
+    describe('get product by id route happy path', () => {
+        before(() => {
+            testUtils.dropData().then(() => {
+                testUtils.createBigLebowski();
+            });
         });
-    });
 
-    after(() => {
-        testUtils.dropData().then(() => {
-            testUtils.closeConnection();
+        after(() => {
+            testUtils.dropData().then(() => {
+                testUtils.closeConnection();
+            });
         });
-    });
-
-    describe('get product by id route', () => {
 
         it('should return an object with the expected properties when passed a valid id', (done) => {
             request(buildUrl(url, 13860428), (error, response, body) => {
@@ -49,13 +48,26 @@ describe('ProductRouter', () => {
                 done();
             });
         });
+    });
+
+    describe('get product by id route error cases', () => {
+        // no befores or afters because these tests do not require local db to have data
+        it('should error nicely if product exists externally, but not locally', (done)=>{
+            request(buildUrl(url, 13860428), (error, response, body) => {
+                expect(error).to.be.null;
+                expect(JSON.parse(body).message).to.contain('Error querying local database');
+                expect(response.statusCode).to.equal(404);
+    
+                done();
+            });
+        });
 
         it('should send 404 if non numeric value given', (done) => {
             request(buildUrl(url, 'e353se3'), (error, response, body) => {
                 expect(error).to.be.null;
                 expect(JSON.parse(body).message).to.contain('invalid product id type or format');
                 expect(response.statusCode).to.equal(404);
-
+    
                 done();
             });
         });
