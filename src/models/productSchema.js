@@ -8,7 +8,7 @@ mongoose.Promise = require('bluebird'); // set up promise library
  * connection. 
  */
 
- // connect to the database, either locally or on mLabs if the env varilable is set
+ // connect to the database, either locally or on mLabs if the env variable is set
 if(process.env.MONGODB_URI !== undefined) {
     console.log('env connection string');
     connectionString = process.env.MONGODB_URI;
@@ -25,7 +25,7 @@ let productSchema = new Schema({
     currency_code: {type: 'string', uppercase: true}
 });
 
-// export the model, so it can be use elsewhere in the project to interate with database
+// export the model, so it can be use elsewhere in the project to interact with database
 module.exports = mongoose.model('Product', productSchema);
 
 
