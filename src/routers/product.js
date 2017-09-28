@@ -3,29 +3,6 @@ const Product = require('../models/productSchema');
 const productService = require('../modules/productService');
 const isValidId = require('../modules/idValidator');
 
-/**
- * POST route to create new products internal to this tool.
- * Not production ready, used by tests and during init developer setup
- */
-router.post('/', (req, res) => {
-    var product = req.body;
-
-    let newProd = new Product({
-        product_id: product.id,
-        value: product.value,
-        currency_code: product.currency_code
-    });
-
-    newProd.save((err) => {
-        if (err) {
-            console.log(err);
-            res.sendStatus(500);
-        } else {
-            res.sendStatus(200);
-        }
-    });
-});
-
 router.get('/:id', (req, res) => {
     console.log('in get product by id route');
 
