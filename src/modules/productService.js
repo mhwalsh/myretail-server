@@ -4,7 +4,8 @@ const isValidId = require('../modules/idValidator');
 require('dotenv').config();
 
 /**
- * ProductService
+ * ProductService is a singleton that can be required into other 
+ * modules to interact with the external product service. 
  */
 class ProductService {
 
@@ -19,8 +20,8 @@ class ProductService {
     }
 
     /**
-     * getProductNameById takes a product id, validates it is numeric
-     * and requests data with it from an external service. 
+     * getProductNameById takes a product id, validates it is numeric,
+     * requests data with it from an external service, and returns it
      * @param prodId 
      */
     getProductNameById(prodId) {

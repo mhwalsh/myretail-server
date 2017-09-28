@@ -1,6 +1,9 @@
 const Product = require('../src/models/productSchema');
 const mongoose = require('mongoose');
-
+/**
+ * TestUtils are simple db manipulation functions to 
+ * populate the database with data for tests.
+ */
 class TestUtils {
 
     dropData() {

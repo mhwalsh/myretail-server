@@ -2,8 +2,11 @@ const expect = require('chai').expect;
 const request = require('request');
 const buildUrl = require('../src/modules/urlFormatter');
 const testUtils = require('./testUtils');
-
 require('dotenv').config();
+
+/**
+ * Test for ProductRouter or src/routers/product.js
+ */
 
 const url = process.env.LOCAL_URL;
 

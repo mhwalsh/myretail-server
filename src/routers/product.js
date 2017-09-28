@@ -2,7 +2,10 @@ const router = require('express').Router();
 const Product = require('../models/productSchema');
 const productService = require('../modules/productService');
 const isValidId = require('../modules/idValidator');
-
+/**
+ * Product router handles http request to this service for product data. 
+ * Currently, it can get products by id, but is easily extensible to add other APIs.
+ */
 router.get('/:id', (req, res) => {
     console.log('in get product by id route');
 
@@ -41,4 +44,5 @@ router.get('/:id', (req, res) => {
     }
 });
 
+// exported to be used in main server file app.js
 module.exports = router;

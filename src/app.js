@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
-
-// require routers
 const productRouter = require('./routers/product');
 
-app.set('port',  process.env.PORT || 3003);
+/**
+ * Main server file, sets port, includes the product router, and listens
+ */
 
-app.use(bodyParser.json());
+// set port for either heroku if the env var exist or locally to 3003
+app.set('port', process.env.PORT || 3003);
 
 app.use('/product', productRouter);
 

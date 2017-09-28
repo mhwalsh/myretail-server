@@ -2,6 +2,10 @@ const expect = require('chai').expect;
 const nock = require('nock');
 const productService = require('../src/modules/productService');
 
+/**
+ * Tests for ProductService or src/modules/productService.js
+ */
+
 describe('ProductService', () => {
 
     before(() => {
