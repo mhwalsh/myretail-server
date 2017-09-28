@@ -28,6 +28,7 @@ class ProductService {
         if (isValidId(prodId)) {
             let newURL = buildUrl(this.url, parseInt(prodId));
             return rp(newURL, this.options).then((resp) => {
+                console.log(resp);
                 return JSON.parse(resp).product.item.product_description.title;
             }).catch((err) => {
                 // if 404 send specific error message
